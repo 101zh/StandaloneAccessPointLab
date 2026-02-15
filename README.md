@@ -1,18 +1,27 @@
 # Standalone Access Point Configuration
 
-This repository contains the configurations for a small office network with a standalone access point that broadcasts multiple SSIDs. Read below for more details.
+This repository contains the configurations for a small office network with a standalone access point that broadcasts multiple SSIDs. Device configurations and other diagnostic information can be found in the corresponding folders.
 
-## IPv4 Topology
+Background information on lab concepts can be found here: <https://101zh.github.io/networking/>
 
-This Topology is for IPv4. All 10.0.xx.xx addresses are within the network.
+## Contents
 
-![IPv4 Topology Image](Images/IPv4.Topology.png)
+- [**Purpose**](#purpose)
+- [**Lab Summary**](#lab-summary)
+- [**IPv4 Topology**](#ipv4-topology)
+- [**Address Table**](#address-table)
+- [**Device Overview**](#device-overview)
+- [**Important Lab Commands**](#important-configuration-commands)
+  - [**Access Point**](#ap-commands)
+  - [**Switch Configuration**](#switch-commands)
+  - [**Router Configuration**](#router-commands)
+- [**Copyright**](#copyright)
 
 ## Purpose
 
 The purpose of this lab is to setup a standalone access point (AP) that broadcasts a 2.4GHz network using a pre-shared key to authenticate users; a 5GHz network also using a pre-shared key to authenticate users; and a 5GHz network with enterprise authentication using RADIUS. All these Wi-Fi networks will be secured using WPA2. Additionally, the other devices are configured to provide internet connectivity for any devices that connect to the AP by using various protocols.
 
-## Summary
+## Lab Summary
 
 - 3 wireless networks
   - One 2.4GHz with WPA2 pre-shared key (WPA2 PSK)
@@ -26,8 +35,13 @@ The purpose of this lab is to setup a standalone access point (AP) that broadcas
   - Only trusted ports are trunked
   - Multiple VLAN interfaces for testing and debugging
 
-Wordy Description:\
-A standalone access point was configured with a 2.4GHz network and 5GHz network using WPA2 and a pre-shared key to authenticate users; Additionally, the access point was also configured to broadcast a 5GHz network with enterprise authentication using RADIUS. As a result, there is a RADIUS server. The RADIUS server is only configured for authentication. Lastly there is a router that provides connectivity to the internet through DHCP and NAT for the AP and other connected wireless devices. The switch has trunked ports with internal devices and multiple VLAN interfaces for testing.
+A standalone access point was configured with a 2.4GHz network and 5GHz network using WPA2 and a pre-shared key to authenticate users; Additionally, the access point was also configured to broadcast a 5GHz network with enterprise authentication using RADIUS. As a result, there is a RADIUS server. Lastly there is a router that provides connectivity to the internet through DHCP and NAT for the AP and other connected wireless devices.
+
+## IPv4 Topology
+
+This Topology is for IPv4. All 10.0.xx.xx addresses are within the network.
+
+![IPv4 Topology Image](Images/IPv4.Topology.png)
 
 ## Address Table
 
@@ -51,20 +65,6 @@ A standalone access point was configured with a 2.4GHz network and 5GHz network 
 - One Cisco 3560 POE-38 running C3560-IPSERVICESK9-M Version 12.2(44)SE5
 - One Cisco Aironet AIR-LAP1042N-A-K9 Dual Band Access Point running k9w7 IOS
 - One server running Debian
-
-## Background
-
-### Wireless Access Points & Wireless Security
-
-Wireless APs are devices that allow other Wi-Fi devices to connect to it, so that those devices can access resources on the network or the internet. Wi-Fi devices and wireless access points use radio waves to communicate with radio waves. There are multiple ranges for these radio waves, but the 2.4GHz and 5GHz ranges are the most common. Wireless access points are useful for devices that want access to the internet, but also need to be mobile, like phones, tablets, and laptops. Although, the transmission of data wirelessly may seem like a breach of security because anyone can detect and read the transmissions, there are various ways to encrypt that data. One such way is with AES, an encryption algorithm, making it so that no one can read the data that is sent wirelessly, other than the AP.
-
-### What are SSIDs?
-
-A service set identifier (SSID) refers to a particular wireless network’s name transmitted by an AP. SSIDs are what appear when a user attempts to connect to a Wi-Fi network in the settings menu on their device. Basic service set identifiers (BSSIDs) are different from SSIDs and are almost never seen by users. BSSIDs are unique identifier labels that are given to each transmission of an SSID. For example, an SSID of “Floor 1” would have a different BSSID than an SSID of “Floor 2”. BSSIDs are used for devices to be able to uniquely identify different Wi-Fi networks, especially when an area has a multitude of APs.
-
-### Security
-
-Security is important for wireless networks, especially since it is easy to connect to one. There are multiple forms of security to prevent unwanted devices from joining the network. One such method is the use a password for the Wi-Fi network, only allowing those who put in the correct password to get Wi-Fi. This method is effective but may not be effective enough for a company that wants to protect confidential documents. This is where another method of authentication is used: RADIUS (Remote Authentication Dial-In User Service), a centralized way to authenticate, authorize, and keep track of what users do on the network (accounting). A RADIUS server can be configured to have a separate user for each person who should have access to a network and can bestow different privileges to each user, since both a username and password is required to be authenticated. A bonus of RADIUS is that it can also do accounting for users. Since each user is signed into their account for the network, and administrator can check on any particular users’ recent actions on the network.
 
 ## Important Configuration Commands
 
@@ -166,3 +166,27 @@ Security is important for wireless networks, especially since it is easy to conn
   - Indicates a list of addresses to be translated on the inside to one interface with PAT (port address translation)
 - **access-list** \[_access-list-number_\] {_deny|permit_} \[_network-number_\] \[_wildcard-mask_\]
   - Denies or permits a range of IP addresses
+
+## Copyright
+
+MIT License
+
+Copyright (c) 2026 101zh
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.z
